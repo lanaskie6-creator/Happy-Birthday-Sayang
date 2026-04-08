@@ -52,6 +52,12 @@
         .btn-next { margin-top: 30px; background: var(--pink-tua); color: white; border: none; padding: 12px 30px; border-radius: 25px; font-weight: bold; cursor: pointer; }
         #music-toggle { position: fixed; top: 20px; right: 20px; z-index: 3000; background: white; border-radius: 50%; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; border: 2px solid var(--pink-muda); cursor: pointer; }
         #tombol-mulai {
+            #tombol-mulai {
+    display: none;
+    position: fixed;
+    top: 50%;
+    /* ... kode di bawahnya tetap sama ... */
+
     position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
     z-index: 5000; background: #ff1493; color: white;
     border: none; padding: 15px 30px; border-radius: 30px; font-weight: bold;
@@ -123,6 +129,27 @@
     </div>
 
 <script>
+    window.onload = function() {
+    // 1. Munculkan Intro
+    const intro = document.getElementById('intro');
+    if (intro) {
+        intro.style.display = 'flex';
+        
+        // 2. Tunggu 4 detik (biar Nana selesai baca "I made this web...")
+        setTimeout(() => {
+            intro.style.opacity = '0'; // Intro memudar
+            
+            setTimeout(() => {
+                intro.style.display = 'none'; // Intro hilang total
+                
+                // 3. BARU MUNCULKAN TOMBOL PINK NYA
+                const tombol = document.getElementById('tombol-mulai');
+                if (tombol) tombol.style.display = 'block';
+            }, 1000);
+        }, 4000);
+    }
+};
+
     const pesanCinta = `it's your special dayy, wish u all the best sayanggg. selamat bertumbuh jauh lebih baik sayanggku cintaaku, panjang umur, a wish for u on ur birthday, whatever u seek may u find whatever u wish may it be fulfilled on ur birthday and together, i hope u will walk on this journey knowing that u belong babe, i hope even if things sometime do not go ur way u will stop trying, u will not give up on urself and on ur thoughest days, i hope u will reminding yourself of this word "u deserve better, kamu layak dicintai dan dirayakan dalam hal apapun!!. n may allah grant u what ur heart truly desire, may allah make everything u want good for u, so that may accept all ur prayers and wishes babe. 🥺🥺💗💗\n\nsometimes, yang bisa diandelin hanya kamu sendiri, tapi jangan pernah kamu ngerasa sendiri, if you need someone to talk im here, and always here, masih punya diri kamu sendiri, kamu punya allah, dan aku sayanggg!! \n\nsemoga hal baik selalu beriringan denganmu, semoga semesta selalu berpihak sama kamu, semoga jalanmu selalu dipermudahkan, teruslah tumbuh, teruslah melangkah dan berbahagia. aku akan selalu bangga atas setiap proses yang sudah kamu lalui anak hebat anak kuat anak cantikk, i will always support u!! 🤍🤍💐💐`;
 
     let lagu = document.getElementById('lagu');
@@ -219,6 +246,7 @@
         }
     }
 </script>
+
 </body>
 </html>
 
