@@ -52,23 +52,33 @@
         .btn-next { margin-top: 30px; background: var(--pink-tua); color: white; border: none; padding: 12px 30px; border-radius: 25px; font-weight: bold; cursor: pointer; }
         #music-toggle { position: fixed; top: 20px; right: 20px; z-index: 3000; background: white; border-radius: 50%; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; border: 2px solid var(--pink-muda); cursor: pointer; }
         #tombol-mulai {
-            #tombol-mulai {
-    display: none;
+    display: none; /* Ingat, ini biar ngumpet dulu */
     position: fixed;
     top: 50%;
-    /* ... kode di bawahnya tetap sama ... */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5000;
+    
+    /* --- BARIS INI YANG BIKIN PINK & GEDE --- */
+    background: #ff1493; /* Warna Pink Tua */
+    color: white; /* Warna Teks Putih */
+    border: none; /* Hilangin garis pinggir default */
+    padding: 15px 30px; /* Ukuran dalem (biar gede) */
+    border-radius: 30px; /* Sudutnya bulet */
+    font-weight: bold; /* Teks tebal */
+    font-size: 1.2rem; /* Ukuran teks */
+    cursor: pointer; /* Kursor jadi jari saat dideketin */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* Bayangan estetik */
+    animation: denyut 1.5s infinite; /* Efek detak jantung (kalau mau) */
+}
 
-    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    z-index: 5000; background: #ff1493; color: white;
-    border: none; padding: 15px 30px; border-radius: 30px; font-weight: bold;
-    font-size: 1.2rem; cursor: pointer; box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-    animation: denyut 1.5s infinite;
+/* Tambahkan ini di bawahnya biar ada animasinya */
+@keyframes denyut {
+  0% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.1); }
+  100% { transform: translate(-50%, -50%) scale(1); }
 }
-@keyframes denyut { 
-    0% { transform: translate(-50%, -50%) scale(1); } 
-    50% { transform: translate(-50%, -50%) scale(1.1); } 
-    100% { transform: translate(-50%, -50%) scale(1); } 
-}
+
 
     </style>
 </head>
