@@ -115,21 +115,41 @@
 
     // Fungsi saat layar disentuh pertama kali
     function mulaiSemua() {
-        if (!introSelesai) {
-            lagu.play().catch(() => {});
-            // Tunggu animasi intro selesai (3 detik)
+  // 1. Sembunyikan tombol "Klik di Sini" biar hilang dari layar
+  const tombol = document.getElementById('tombol-mulai');
+  if (tombol) tombol.style.display = 'none';
+
+  if (!introSelesai) {
+    // 2. Putar lagu
+    lagu.play().catch(() => {});
+
+    // 3. Proses munculin Intro dulu baru Kado
+    const intro = document.getElementById('intro');
+    if (intro) {
+      intro.style.display = 'flex';
+      intro.style.opacity = '1';
+
+      // Tunggu 3 detik (biar Nana baca "I made this web...")
+      setTimeout(() => {
+        intro.style.opacity = '0';
+        setTimeout(() => {
+          intro.style.display = 'none';
+          
+          // Munculkan kado
+          const kadoContainer = document.getElementById('container-kado');
+          if (kadoContainer) {
+            kadoContainer.style.display = 'block';
             setTimeout(() => {
-                document.getElementById('intro').style.opacity = '0';
-                setTimeout(() => {
-                    document.getElementById('intro').style.display = 'none';
-                    const kadoContainer = document.getElementById('container-kado');
-                    kadoContainer.style.display = 'block';
-                    setTimeout(() => kadoContainer.style.opacity = '1', 50);
-                }, 1000);
-            }, 3000);
-            introSelesai = true;
-        }
+              kadoContainer.style.opacity = '1';
+            }, 100);
+          }
+        }, 1000);
+      }, 3000);
     }
+    introSelesai = true;
+  }
+}
+
 
     function toggleMusic() {
         if (lagu.paused) { lagu.play(); document.getElementById('music-toggle').innerHTML = '🎵'; }
