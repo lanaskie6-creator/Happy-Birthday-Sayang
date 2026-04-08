@@ -3,141 +3,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Special Gift for Nana My Love 🩷🫶</title>
+    <title>Special Gift for Nanaa 🫣🩷</title>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&family=Pacifico&display=swap" rel="stylesheet">
     
     <style>
-        :root { --pink-tua: #ff69b4; --pink-muda: #ffb7c5; --bg-pink: #fff5f7; }
+        :root { --pink-tua: #ff1493; --pink-muda: #ff69b4; --bg-pink: #fff5f7; }
         body { margin: 0; padding: 0; font-family: 'Quicksand', sans-serif; background-color: var(--bg-pink); overflow: hidden; height: 100vh; display: flex; justify-content: center; align-items: center; }
 
+        /* --- HALAMAN INTRO --- */
+        #intro {
+            position: fixed; inset: 0; background: var(--bg-pink); z-index: 2000;
+            display: flex; justify-content: center; align-items: center; text-align: center;
+            transition: 1s ease-in-out;
+        }
+        .text-intro {
+            font-family: 'Pacifico', cursive; color: var(--pink-tua);
+            font-size: 1.5rem; opacity: 0; transform: scale(0.8);
+            animation: munculIntro 3s forwards;
+        }
+        @keyframes munculIntro {
+            0% { opacity: 0; transform: scale(0.8); }
+            30% { opacity: 1; transform: scale(1); }
+            70% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(1.1); }
+        }
+
         /* --- KADO --- */
-        #container-kado { text-align: center; cursor: pointer; transition: 0.5s; z-index: 100; }
-        .kado { width: 140px; height: 140px; background: var(--pink-tua); border-radius: 15px; position: relative; box-shadow: 0 10px 20px rgba(0,0,0,0.1); animation: goyang 2s infinite; }
+        #container-kado { display: none; text-align: center; cursor: pointer; z-index: 100; transition: 0.8s; opacity: 0; }
+        .kado { width: 140px; height: 140px; background: var(--pink-muda); border-radius: 15px; position: relative; animation: goyang 2s infinite; }
         .kado::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 25px; height: 100%; background: white; }
         .kado::after { content: ''; position: absolute; top: 50%; left: 0; transform: translateY(-50%); width: 100%; height: 25px; background: white; }
-        .tutup { width: 160px; height: 35px; background: var(--pink-tua); border-radius: 8px; position: absolute; top: -15px; left: -10px; z-index: 10; border-bottom: 3px solid rgba(0,0,0,0.1); }
-        @keyframes goyang { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-5deg); } 75% { transform: rotate(5deg); } }
+        @keyframes goyang { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-10deg); } 75% { transform: rotate(10deg); } }
 
-        /* --- LEDAKAN --- */
-        .elemen-terbang { position: absolute; pointer-events: none; z-index: 50; transition: 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); opacity: 0; }
-        .img-terbang { width: 90px; height: 90px; border: 4px solid white; border-radius: 12px; object-fit: cover; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        /* --- BALON --- */
+        .balon-up { position: fixed; bottom: -100px; font-size: 3rem; z-index: 1000; animation: balonNaik 3s ease-in forwards; pointer-events: none; }
+        @keyframes balonNaik { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(-120vh); opacity: 0; } }
 
-        /* --- POPUP SURAT (ANIMASI PELAN) --- */
-        #konten-pesan { display: none; position: fixed; inset: 0; flex-direction: column; justify-content: center; align-items: center; background: rgba(255,245,247,0.95); z-index: 150; padding: 20px; }
-        .kotak-surat { background: white; padding: 25px; border-radius: 25px; box-shadow: 0 15px 40px rgba(255,105,180,0.2); border: 2px solid var(--pink-muda); max-width: 360px; width: 90%; text-align: center; transform: translateY(50px); transition: 1s ease; opacity: 0; max-height: 80vh; overflow-y: auto; }
-        .kotak-surat.naik { transform: translateY(0); opacity: 1; }
+        /* --- STORY & SURAT --- */
+        #story-container, #konten-pesan { display: none; position: fixed; inset: 0; z-index: 200; flex-direction: column; justify-content: center; align-items: center; background: var(--bg-pink); }
+        .slide { display: none; flex-direction: column; align-items: center; text-align: center; animation: fadeIn 0.8s; }
+        .frame-foto { width: 280px; height: 350px; background: white; padding: 10px; border-radius: 20px; box-shadow: 0 15px 35px rgba(255,105,180,0.3); }
+        .frame-foto img { width: 100%; height: 100%; object-fit: cover; border-radius: 15px; }
+        .teks-story { margin-top: 25px; font-size: 1.3rem; color: var(--pink-tua); font-weight: bold; padding: 0 30px; font-family: 'Pacifico', cursive; }
         
-        h1 { font-family: 'Pacifico', cursive; color: var(--pink-tua); margin-bottom: 10px; font-size: 1.5rem; }
+        .kotak-surat { background: white; padding: 25px; border-radius: 25px; border: 3px solid var(--pink-muda); max-width: 360px; text-align: center; max-height: 70vh; overflow-y: auto; box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
         #teks-ngetik { line-height: 1.6; color: #444; font-size: 0.95rem; text-align: left; white-space: pre-line; }
 
-        /* --- TEKS JALAN --- */
-        .running-text { position: fixed; bottom: 0; width: 100%; background: var(--pink-tua); color: white; padding: 12px 0; font-weight: bold; display: none; z-index: 200; overflow: hidden; }
-        .running-text div { display: inline-block; white-space: nowrap; animation: jalan 25s linear infinite; padding-left: 100%; }
-        @keyframes jalan { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
-
-        /* --- HUJAN HATI --- */
-        .hati { position: fixed; top: -10vh; z-index: 140; animation: jatuh linear forwards; color: var(--pink-tua); }
-        @keyframes jatuh { to { transform: translateY(110vh) rotate(360deg); } }
+        .btn-next { margin-top: 30px; background: var(--pink-tua); color: white; border: none; padding: 12px 30px; border-radius: 25px; font-weight: bold; cursor: pointer; }
+        #music-toggle { position: fixed; top: 20px; right: 20px; z-index: 3000; background: white; border-radius: 50%; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; border: 2px solid var(--pink-muda); cursor: pointer; }
     </style>
 </head>
-<body onclick="bukaKado()">
+<body onclick="mulaiSemua()">
 
-    <!-- Audio Player -->
     <audio id="lagu" loop>
-        <source src="https://files.catbox.moe/66vly7.mp3" type="audio/mpeg">
+        <source src="aboutyou.mp3" type="audio/mpeg">
     </audio>
 
-    <div id="container-kado">
-        <div class="kado"><div class="tutup"></div></div>
-        <p style="color: var(--pink-tua); margin-top: 20px; font-weight: bold;">Klik Kadonya, Nana! 🎁</p>
+    <div id="music-toggle" onclick="toggleMusic()">🎵</div>
+
+    <!-- 1. Halaman Intro -->
+    <div id="intro">
+        <div class="text-intro">"I made this web just for u"</div>
     </div>
 
-    <div id="ledakan"></div>
+    <!-- 2. Halaman Kado -->
+    <div id="container-kado" onclick="bukaKado()">
+        <div class="kado"><div style="width:160px;height:35px;background:var(--pink-muda);position:absolute;top:-15px;left:-10px;border-radius:8px;"></div></div>
+        <p style="color: var(--pink-tua); margin-top: 25px; font-weight: bold;">Klik Kadonya, Sayang! 🎁</p>
+    </div>
 
-    <div id="konten-pesan">
-        <div id="surat" class="kotak-surat">
-            <h1>For u MyLove... 🩷</h1>
-            <p id="teks-ngetik"></p>
-            <button onclick="location.reload()" style="margin-top:20px; background: var(--pink-muda); border:none; padding:8px 15px; border-radius:10px; color:#833; cursor:pointer; font-family: 'Quicksand'; font-weight: bold;">Buka Lagi? ✨</button>
+    <div id="wadah-balon"></div>
+
+    <!-- 3. Halaman Story -->
+    <div id="story-container">
+        <div class="slide" id="slide0">
+            <div class="frame-foto"><img src="nana1.jpg"></div>
+            <div class="teks-story">Happy Birthday Mylovee!!</div>
+            <button class="btn-next" onclick="nextSlide(1)">Lanjut ➔</button>
+        </div>
+        <div class="slide" id="slide1">
+            <div class="frame-foto"><img src="nana2.jpg"></div>
+            <div class="teks-story">You get more amazing every year baby!!</div>
+            <button class="btn-next" onclick="nextSlide(2)">Lanjut ➔</button>
+        </div>
+        <div class="slide" id="slide2">
+            <div class="frame-foto"><img src="nana3.jpg"></div>
+            <div class="teks-story">I proud of you baby, i love you so much 🩷🫶</div>
+            <button class="btn-next" onclick="nextSlide(3)">Lanjut ➔</button>
+        </div>
+        <div class="slide" id="slide3">
+            <div class="frame-foto"><img src="nana4.jpg"></div>
+            <div class="teks-story">Okey okey last one fr i made something for your bday, read it slowly yaaa 🎂</div>
+            <button class="btn-next" onclick="keSurat()">Buka Pesan ➔</button>
         </div>
     </div>
 
-    <div id="marquee" class="running-text">
-        <div>Happy Birthday Sayang! 🎂 Sehat selalu, makin cantik, makin sayang sama aku... 🩷 I LOVE YOU SO MUCH! 🫶🫰 --- </div>
+    <!-- 4. Halaman Surat -->
+    <div id="konten-pesan">
+        <div id="surat" class="kotak-surat">
+            <h1 style="font-family:'Pacifico'; color:var(--pink-tua)">Untuk Sayangku Nanaa 🩷</h1>
+            <p id="teks-ngetik"></p>
+            <button onclick="location.reload()" style="margin-top:20px; background:var(--pink-muda); border:none; padding:10px; border-radius:10px; color:white;">Putar Lagi ✨</button>
+        </div>
     </div>
 
 <script>
-    // 1. GANTI NAMA FOTO DISINI (Pastikan sesuai di GitHub)
-    const foto = ['IMG-20260405-WA0045.jpg', 'nana2.jpg', 'nana3.jpg']; 
-    
-    // 2. PESAN ROMANTIS BARU
-    const pesanCinta = `it's your special dayy, wish u all the best sayanggg. selamat bertumbuh jauh lebih baik sayanggku cintaaku, panjang umur, a wish for u on ur birthday, whatever u seek may u find whatever u wish may it be fulfilled on ur birthday and together, i hope u will walk on this journey knowing that u belong babe, i hope even if things sometime do not go ur way u will stop trying, u will not give up on urself and on ur thoughest days, i hope u will reminding yourself of this word "u deserve better, kamu layak dicintai dan dirayakan dalam hal apapun!!. n may allah grant u what ur heart truly desire, may allah make everything u want good for u, so that may accept all ur prayers and wishes babe. 🥺🥺💗💗\n\nsometimes, yang bisa diandelin hanya kamu sendiri, tapi jangan pernah kamu ngerasa sendiri, if you need someone to talk im here, and always here, masih punya diri kamu sendiri, kamu punya allah, dan aku sayanggg!!\n\nsemoga hal baik selalu beriringan denganmu, semoga semesta selalu berpihak sama kamu, semoga jalanmu selalu dipermudahkan, teruslah tumbuh, teruslah melangkah dan berbahagia. aku akan selalu bangga atas setiap proses yang sudah kamu lalui anak hebat anak kuat anak cantikk, i will always support u!! 🤍🤍💐💐`;
+    const pesanCinta = `it's your special dayy, wish u all the best sayanggg. selamat bertumbuh jauh lebih baik sayanggku cintaaku, panjang umur, a wish for u on ur birthday, whatever u seek may u find whatever u wish may it be fulfilled on ur birthday and together, i hope u will walk on this journey knowing that u belong babe, i hope even if things sometime do not go ur way u will stop trying, u will not give up on urself and on ur thoughest days, i hope u will reminding yourself of this word "u deserve better, kamu layak dicintai dan dirayakan dalam hal apapun!!. n may allah grant u what ur heart truly desire, may allah make everything u want good for u, so that may accept all ur prayers and wishes babe. 🥺🥺💗💗\n\nsometimes, yang bisa diandelin hanya kamu sendiri, tapi jangan pernah kamu ngerasa sendiri, if you need someone to talk im here, and always here, masih punya diri kamu sendiri, kamu punya allah, dan aku sayanggg!! \n\nsemoga hal baik selalu beriringan denganmu, semoga semesta selalu berpihak sama kamu, semoga jalanmu selalu dipermudahkan, teruslah tumbuh, teruslah melangkah dan berbahagia. aku akan selalu bangga atas setiap proses yang sudah kamu lalui anak hebat anak kuat anak cantikk, i will always support u!! 🤍🤍💐💐`;
 
-    let dibuka = false;
-    function bukaKado() {
-        if (dibuka) return; 
-        dibuka = true;
+    let lagu = document.getElementById('lagu');
+    let introSelesai = false;
 
-        const musik = document.getElementById('lagu');
-        musik.play();
-
-        document.getElementById('container-kado').style.transform = 'scale(0) rotate(360deg)';
-        document.getElementById('container-kado').style.opacity = '0';
-
-        setTimeout(() => {
-            foto.forEach((f, i) => {
-                const el = document.createElement('div');
-                el.className = 'elemen-terbang';
-                el.innerHTML = `<img src="${f}" class="img-terbang">`;
-                document.getElementById('ledakan').appendChild(el);
-                
-                const arah = (i * 120) * (Math.PI / 180);
-                const x = Math.cos(arah) * 200;
-                const y = Math.sin(arah) * 200;
-
-                setTimeout(() => {
-                    el.style.opacity = '1';
-                    el.style.transform = `translate(${x}px, ${y}px) rotate(${i*20}deg)`;
-                }, 50);
-            });
-        }, 300);
-
-        setTimeout(() => {
-            document.getElementById('konten-pesan').style.display = 'flex';
-            document.getElementById('marquee').style.display = 'block';
+    // Fungsi saat layar disentuh pertama kali
+    function mulaiSemua() {
+        if (!introSelesai) {
+            lagu.play().catch(() => {});
+            // Tunggu animasi intro selesai (3 detik)
             setTimeout(() => {
-                document.getElementById('surat').classList.add('naik');
-                mulaiNgetik(); 
-            }, 500);
-            setInterval(buatHati, 400);
-        }, 2000);
+                document.getElementById('intro').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('intro').style.display = 'none';
+                    const kadoContainer = document.getElementById('container-kado');
+                    kadoContainer.style.display = 'block';
+                    setTimeout(() => kadoContainer.style.opacity = '1', 50);
+                }, 1000);
+            }, 3000);
+            introSelesai = true;
+        }
+    }
+
+    function toggleMusic() {
+        if (lagu.paused) { lagu.play(); document.getElementById('music-toggle').innerHTML = '🎵'; }
+        else { lagu.pause(); document.getElementById('music-toggle').innerHTML = '🔇'; }
+    }
+
+    function bukaKado() {
+        buatBalon(25);
+        document.getElementById('container-kado').style.display = 'none';
+        document.getElementById('story-container').style.display = 'flex';
+        document.getElementById('slide0').style.display = 'flex';
+    }
+
+    function nextSlide(n) {
+        const slides = document.querySelectorAll('.slide');
+        slides.forEach(s => s.style.display = 'none');
+        document.getElementById('slide' + n).style.display = 'flex';
+    }
+
+    function keSurat() {
+        buatBalon(30);
+        setTimeout(() => {
+            document.getElementById('story-container').style.display = 'none';
+            document.getElementById('konten-pesan').style.display = 'flex';
+            mulaiNgetik();
+        }, 1000);
     }
 
     let indexTeks = 0;
     function mulaiNgetik() {
-        const wadahTeks = document.getElementById('teks-ngetik');
         if (indexTeks < pesanCinta.length) {
-            wadahTeks.innerHTML += pesanCinta.charAt(indexTeks);
+            document.getElementById('teks-ngetik').innerHTML += pesanCinta.charAt(indexTeks);
             indexTeks++;
-            // Scroll otomatis ke bawah pas ngetik biar teks panjang kelihatan
-            const surat = document.getElementById('surat');
-            surat.scrollTop = surat.scrollHeight;
-            
-            setTimeout(mulaiNgetik, 50); 
+            const s = document.getElementById('surat');
+            s.scrollTop = s.scrollHeight;
+            setTimeout(mulaiNgetik, 45);
         }
     }
 
-    function buatHati() {
-        const h = document.createElement('div');
-        h.className = 'hati';
-        h.innerHTML = '❤️';
-        h.style.left = Math.random() * 100 + 'vw';
-        h.style.fontSize = (Math.random() * 20 + 10) + 'px';
-        h.style.animationDuration = (Math.random() * 3 + 2) + 's';
-        document.body.appendChild(h);
-        setTimeout(() => h.remove(), 5000);
+    function buatBalon(jumlah) {
+        const wadah = document.getElementById('wadah-balon');
+        for (let i = 0; i < jumlah; i++) {
+            setTimeout(() => {
+                const b = document.createElement('div');
+                b.className = 'balon-up';
+                b.innerHTML = ['🎈', '💖', '💗', '💕'][Math.floor(Math.random() * 4)];
+                b.style.left = Math.random() * 95 + 'vw';
+                b.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                wadah.appendChild(b);
+                setTimeout(() => b.remove(), 3500);
+            }, i * 80);
+        }
     }
 </script>
-
 </body>
 </html>
+
