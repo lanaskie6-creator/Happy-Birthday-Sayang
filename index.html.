@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Sayang!</title>
+    <!-- Link Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Library Konfeti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    
+    <style>
+        :root {
+            --pink-soft: #ffc0cb;
+            --pink-dark: #ff69b4;
+            --white: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(to bottom, #fbc2eb 0%, #a6c1ee 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 400px;
+            width: 90%;
+            backdrop-filter: blur(5px);
+            border: 2px solid var(--white);
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            color: var(--pink-dark);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .photo-frame {
+            width: 150px;
+            height: 150px;
+            margin: 20px auto;
+            border-radius: 50%;
+            border: 5px solid var(--white);
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .btn {
+            background-color: var(--pink-dark);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+            background-color: #ff1493;
+        }
+
+        #pesan-rahasia {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background: var(--white);
+            border-radius: 10px;
+            font-style: italic;
+            animation: fadeIn 1s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="photo-frame">
+            <!-- Ganti URL di bawah dengan foto cewekmu atau foto kalian berdua -->
+            <img src="https://lh3.googleusercontent.com/d/1Za9m8xCxZ9BeW9mYRJFgg9DyZnXxv67N" alt="Foto Cantik">
+
+        </div>
+        
+        <h1>Happy Birthday! 🎂</h1>
+        <p>Hari ini adalah hari yang spesial karena seseorang yang luar biasa lahir ke dunia. Semoga harimu penuh tawa dan selalu dikelilingi orang baik disekitarmu! </p>
+
+        <button class="btn" onclick="kasiKejutan()">Klik Untuk Kejutan! ❤️</button>
+
+        <div id="pesan-rahasia">
+            "Terima kasih sudah jadi bagian terbaik dalam hidupku. I love you more than words can say!" 🌸
+        </div>
+    </div>
+
+    <script>
+        function kasiKejutan() {
+            // Munculkan Konfeti
+            var duration = 3 * 1000;
+            var end = Date.now() + duration;
+
+            (function frame() {
+              confetti({
+                particleCount: 3,
+                angle: 60,
+                spread: 55,
+                origin: { x: 0 },
+                colors: ['#ff69b4', '#ffffff']
+              });
+              confetti({
+                particleCount: 3,
+                angle: 120,
+                spread: 55,
+                origin: { x: 1 },
+                colors: ['#ff69b4', '#ffffff']
+              });
+
+              if (Date.now() < end) {
+                requestAnimationFrame(frame);
+              }
+            }());
+
+            // Munculkan Pesan
+            document.getElementById('pesan-rahasia').style.display = 'block';
+            
+            // Ubah teks tombol
+            document.querySelector('.btn').innerText = 'Yay! 🎉';
+        }
+    </script>
+</body>
+</html>
