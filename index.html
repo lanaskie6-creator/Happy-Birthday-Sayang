@@ -71,7 +71,7 @@
 
 
     <audio id="lagu" loop>
-        <source src="ssstik.io_1775638977142.mp3" type="audio/mpeg">
+        <source src="ssstik.io_1775654338033.mp3" type="audio/mpeg">
     </audio>
 
     <div id="music-toggle" onclick="toggleMusic()">🎵</div>
@@ -130,40 +130,40 @@
 
     // Fungsi saat layar disentuh pertama kali
     function mulaiSemua() {
-  // 1. Sembunyikan tombol "Klik di Sini" biar hilang dari layar
-  const tombol = document.getElementById('tombol-mulai');
-  if (tombol) tombol.style.display = 'none';
+    // 1. SEMBUNYIKAN TOMBOL MULAI (Biar nggak nutupin intro)
+    const tombol = document.getElementById('tombol-mulai');
+    if (tombol) tombol.style.display = 'none';
 
-  if (!introSelesai) {
-    // 2. Putar lagu
-    lagu.play().catch(() => {});
+    if (!introSelesai) {
+        // 2. Putar musik
+        lagu.play().catch(e => console.log("Musik jalan!"));
 
-    // 3. Proses munculin Intro dulu baru Kado
-    const intro = document.getElementById('intro');
-    if (intro) {
-      intro.style.display = 'flex';
-      intro.style.opacity = '1';
+        // 3. Proses munculin Intro dulu baru Kado
+        const intro = document.getElementById('intro');
+        if (intro) {
+            // Pastikan intro muncul
+            intro.style.display = 'flex';
+            setTimeout(() => intro.style.opacity = '1', 10);
 
-      // Tunggu 3 detik (biar Nana baca "I made this web...")
-      setTimeout(() => {
-        intro.style.opacity = '0';
-        setTimeout(() => {
-          intro.style.display = 'none';
-          
-          // Munculkan kado
-          const kadoContainer = document.getElementById('container-kado');
-          if (kadoContainer) {
-            kadoContainer.style.display = 'block';
+            // Tunggu 3.5 detik (durasi animasi intro)
             setTimeout(() => {
-              kadoContainer.style.opacity = '1';
-            }, 100);
-          }
-        }, 1000);
-      }, 3000);
+                intro.style.opacity = '0';
+                setTimeout(() => {
+                    intro.style.display = 'none';
+                    
+                    // Munculkan kado setelah intro hilang
+                    const kado = document.getElementById('container-kado');
+                    if (kado) {
+                        kado.style.display = 'block';
+                        setTimeout(() => kado.style.opacity = '1', 100);
+                    }
+                }, 1000);
+            }, 3500);
+        }
+        introSelesai = true;
     }
-    introSelesai = true;
-  }
 }
+
 
 
     function toggleMusic() {
