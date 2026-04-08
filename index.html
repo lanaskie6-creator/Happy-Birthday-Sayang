@@ -117,7 +117,7 @@
         <button class="btn" onclick="kasiKejutan()">Klik Untuk Kejutan! ❤️</button>
 
         <div id="pesan-rahasia">
-            "Terima kasih sudah jadi bagian terbaik dalam hidupku. I love you more than words can say!" 🌸
+            "Terima kasih sudah jadi bagian terbaik dalam hidupku. I love you more than words can say!" 💐
         </div>
     </div>
 
@@ -155,5 +155,57 @@
             document.querySelector('.btn').innerText = 'Yay! 🎉';
         }
     </script>
+</body>
+    <!-- Layar Kunci PIN (Muncul Paling Awal) -->
+<div id="lock-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff5f7; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999; font-family: 'Quicksand', sans-serif;">
+    <div style="background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); text-align: center; max-width: 80%;">
+        <h2 style="color: #ff69b4; margin-bottom: 10px;">Halo Sayangkuu! ❤️</h2>
+        <p style="color: #666; margin-bottom: 20px;">Masukin PIN (Tanggal Lahirmu) buat buka suprisenyaa ya!</p>
+        
+        <input type="password" id="pin-input" placeholder="6 Digit PIN" maxlength="6" style="padding: 12px; border-radius: 10px; border: 2px solid #ff69b4; text-align: center; font-size: 1.2rem; width: 180px; outline: none; margin-bottom: 15px;">
+        
+        <br>
+        
+        <button onclick="checkPin()" style="background: #ff69b4; color: white; border: none; padding: 12px 30px; border-radius: 25px; cursor: pointer; font-weight: bold; font-size: 1rem; transition: 0.3s;">Buka Sekarang ✨</button>
+        
+        <p id="error-msg" style="color: #e74c3c; margin-top: 15px; display: none; font-size: 0.9rem;">Yah, PIN salah! Coba lagi ya cantikk.. 😳</p>
+    </div>
+</div>
+
+    <!-- Navigasi Menu -->
+<nav style="position: fixed; top: 0; width: 100%; background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); display: flex; justify-content: center; padding: 10px 0; z-index: 1000;">
+    <a href="index.html" style="margin: 0 15px; text-decoration: none; color: var(--pink-dark); font-weight: bold;">Home</a>
+    <a href="pesan.html" style="margin: 0 15px; text-decoration: none; color: #555; font-weight: bold;">Pesan</a>
+</nav>
+    <script>
+function checkPin() {
+    const input = document.getElementById('pin-input').value;
+    // PIN SUDAH DISET KE 040508
+    const pinBenar = '040508'; 
+
+    if (input === pinBenar) {
+        // Jika benar, hilangkan layar kunci
+        document.getElementById('lock-screen').style.transition = '0.5s';
+        document.getElementById('lock-screen').style.opacity = '0';
+        setTimeout(() => {
+            document.getElementById('lock-screen').style.display = 'none';
+        }, 500);
+        
+        // Munculkan pesan selamat
+        alert('Yeeay! Selamat Ulang Tahun Sayangggku! 🤍 Enjoy your surprise!');
+    } else {
+        // Jika salah, munculkan pesan error
+        const error = document.getElementById('error-msg');
+        error.style.display = 'block';
+        
+        // Kasih efek getar dikit (opsional)
+        document.getElementById('pin-input').style.borderColor = 'red';
+        setTimeout(() => {
+            document.getElementById('pin-input').style.borderColor = '#ff69b4';
+        }, 500);
+    }
+}
+</script>
+
 </body>
 </html>
